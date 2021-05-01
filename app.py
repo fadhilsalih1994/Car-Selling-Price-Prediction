@@ -19,13 +19,6 @@ def Home():
 standard_to = StandardScaler()
 
 
-def current_year():
-    current_date = datetime.datetime.now()
-    date = current_date.date()
-    year = int(date.strftime("%Y"))
-    return(year)
-
-
 @app.route("/predict", methods=['POST'])
 def predict():
     Fuel_Type_Diesel = 0
@@ -46,7 +39,10 @@ def predict():
             Fuel_Type_Petrol = 0
             Fuel_Type_Diesel = 0
 
-        Year = current_year()-Year
+        current_date = datetime.datetime.now()
+        date = current_date.date()
+        current_year = int(date.strftime("%Y"))
+        Year = current_year-Year
         Seller_Type_Individual = request.form['Seller_Type_Individual']
         if(Seller_Type_Individual == 'Individual'):
             Seller_Type_Individual = 1
